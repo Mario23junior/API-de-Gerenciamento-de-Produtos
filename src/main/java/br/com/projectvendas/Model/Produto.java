@@ -2,10 +2,25 @@ package br.com.projectvendas.Model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Produto")
 public class Produto {
     
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@Column(length = 100)
 	private String descricao;
+	
+	@Column(name = "preco_unitario")
 	private BigDecimal preco;
 	
 	public Produto() {
