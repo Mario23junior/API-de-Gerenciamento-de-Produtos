@@ -43,8 +43,9 @@ public class ControllerCliente {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente SalvarDados(@RequestBody Cliente cliente) {
-		return clientesRepository.save(cliente);
+	public ResponseEntity<Cliente> SalvarDados(@RequestBody Cliente cliente) {
+		       Cliente clienteSalvo = clientesRepository.save(cliente);
+		        return ResponseEntity.ok(clienteSalvo);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -71,7 +72,7 @@ public class ControllerCliente {
 		                 
 	}
 	
-	@GetMapping("/find/{id}")
+	@GetMapping
 	public ResponseEntity<?> BuscarTodos(Cliente filtro) {
 
 		 ExampleMatcher matcher = ExampleMatcher
