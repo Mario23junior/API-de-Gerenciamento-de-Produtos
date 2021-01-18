@@ -1,6 +1,8 @@
 package br.com.projectvendas;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.com.projectvendas.Model.Cliente;
 import br.com.projectvendas.Repositores.ClientesRepository;
 
-@RequestMapping("/api/clientes/")
+@RequestMapping("/api/clientes")
 @RestController
 public class ControllerCliente {
     
@@ -35,4 +37,38 @@ public class ControllerCliente {
 	public Cliente SalvarDados(@RequestBody Cliente cliente) {
 		return clientesRepository.save(cliente);
 	}
+	
+	@DeleteMapping("/id")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<?> delete(@PathVariable Integer id) {
+		return clientesRepository.findById(id)
+				            .map(deleteUser -> {
+				            clientesRepository.deleteById(id);
+				            return ResponseEntity.ok().build();
+				     }).orElse(ResponseEntity.notFound().build());
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
