@@ -1,5 +1,10 @@
 package br.com.projectvendas;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,9 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.projectvendas.Model.Cliente;
 import br.com.projectvendas.Repositores.ClientesRepository;
-
-@RequestMapping("/api/clientes")
+ 
 @RestController
+@RequestMapping("/api/clientes")
 public class ControllerCliente {
     
 	 ClientesRepository clientesRepository;
@@ -27,30 +32,33 @@ public class ControllerCliente {
 	}
      
 	@GetMapping("/{id}")
-    public Cliente ObterCliente(@PathVariable Integer id) {
-		return clientesRepository
-				           .findById(id)
-				           .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
+    public ResponseEntity<Cliente> ObterCliente(@PathVariable Integer id) {
+		Optional<Cliente> cliente = clientesRepository.findById(id);
+		
+		 if(cliente.isPresent()) {
+			 return ResponseEntity.ok(cliente.get());
+		 }
+		 return ResponseEntity.notFound().build();
      }
 	
-	@PostMapping("/")
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente SalvarDados(@RequestBody Cliente cliente) {
 		return clientesRepository.save(cliente);
 	}
 	
-	@DeleteMapping("/id")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
 		return clientesRepository.findById(id)
 				            .map(deleteUser -> {
-				            clientesRepository.deleteById(id);
-				            return ResponseEntity.ok().build();
+				              clientesRepository.deleteById(id);
+				              return ResponseEntity.ok().build();
 				     }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
 	}
 	
 	
-	@PutMapping
+	@PutMapping("/{id}")
 	public void updateUser(@PathVariable Integer id, @RequestBody Cliente cliente) {
 		    clientesRepository
 		                 .findById(id)
@@ -62,6 +70,19 @@ public class ControllerCliente {
 
 		                 
 	}
+	
+	@GetMapping("/find/{id}")
+	public ResponseEntity<?> BuscarTodos(Cliente filtro) {
+
+		 ExampleMatcher matcher = ExampleMatcher
+				                      .matching()
+				                      .withIgnoreCase()
+				                      .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+		 
+		 Example<Cliente> example = Example.of(filtro,matcher);
+		 List<Cliente> lista = clientesRepository.findAll(example);
+		 return ResponseEntity.ok(lista);
+ 	}
 	
 }
 
