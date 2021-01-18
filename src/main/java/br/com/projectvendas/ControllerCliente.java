@@ -46,7 +46,7 @@ public class ControllerCliente {
 				            .map(deleteUser -> {
 				            clientesRepository.deleteById(id);
 				            return ResponseEntity.ok().build();
-				     }).orElse(ResponseEntity.notFound().build());
+				     }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
 	}
 	
 	
@@ -58,8 +58,9 @@ public class ControllerCliente {
 		                	 cliente.setId(clienteExistente.getId());
 		                	 clientesRepository.save(cliente);
 		                	 return ResponseEntity.noContent().build();
-		                 }).orElseGet( () -> ResponseEntity.noContent().build());
-		                 ;
+		                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
+
+		                 
 	}
 	
 }
