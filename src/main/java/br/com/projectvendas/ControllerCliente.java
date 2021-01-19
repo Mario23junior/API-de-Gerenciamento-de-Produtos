@@ -1,7 +1,6 @@
 package br.com.projectvendas;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -32,13 +31,10 @@ public class ControllerCliente {
 	}
      
 	@GetMapping("/{id}")
-    public ResponseEntity<Cliente> ObterCliente(@PathVariable Integer id) {
-		Optional<Cliente> cliente = clientesRepository.findById(id);
-		
-		 if(cliente.isPresent()) {
-			 return ResponseEntity.ok(cliente.get());
-		 }
-		 return ResponseEntity.notFound().build();
+    public Cliente ObterCliente(@PathVariable Integer id) {
+		 return clientesRepository
+				 .findById(id)
+				 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
      }
 	
 	@PostMapping
@@ -71,6 +67,8 @@ public class ControllerCliente {
 
 		                 
 	}
+	
+	
 	
 	@GetMapping
 	public ResponseEntity<?> BuscarTodos(Cliente filtro) {
