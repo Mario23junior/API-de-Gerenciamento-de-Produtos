@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,12 +44,12 @@ public class ControllerCliente {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
-		return clientesRepository.findById(id)
+	public void deleteUser(@PathVariable Integer id) {
+		     clientesRepository.findById(id)
 				            .map(deleteUser -> {
-				              clientesRepository.deleteById(id);
-				              return ResponseEntity.ok().build();
-				     }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
+				                 clientesRepository.delete(deleteUser);
+				                 return deleteUser;
+				       }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
 	}
 	
 	
