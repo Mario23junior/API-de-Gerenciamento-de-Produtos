@@ -1,4 +1,4 @@
-package br.com.projectvendas;
+package br.com.projectvendas.Controllers;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class ControllerCliente {
 				            .map(deleteUser -> {
 				                 clientesRepository.delete(deleteUser);
 				                 return deleteUser;
-				       }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
+				       }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,("Cliente não encontrado")));
 	}
 	
 	
