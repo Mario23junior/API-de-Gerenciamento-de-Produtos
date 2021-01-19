@@ -39,10 +39,9 @@ public class ControllerCliente {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Cliente> SalvarDados(@RequestBody Cliente cliente) {
-		       Cliente clienteSalvo = clientesRepository.save(cliente);
-		        return ResponseEntity.ok(clienteSalvo);
-	}
+	public Cliente SalvarDados(@RequestBody Cliente cliente) {
+		   return clientesRepository.save(cliente);
+ 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
