@@ -71,16 +71,14 @@ public class ControllerCliente {
 	
 	
 	@GetMapping
-	public ResponseEntity<?> BuscarTodos(Cliente filtro) {
-
+	public List<Cliente> BuscarTodos(Cliente filtro) {
 		 ExampleMatcher matcher = ExampleMatcher
 				                      .matching()
 				                      .withIgnoreCase()
 				                      .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 		 
 		 Example<Cliente> example = Example.of(filtro,matcher);
-		 List<Cliente> lista = clientesRepository.findAll(example);
-		 return ResponseEntity.ok(lista);
+		 return clientesRepository.findAll(example);
  	}
 	
 }
