@@ -55,13 +55,14 @@ public class ControllerCliente {
 	
 	
 	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateUser(@PathVariable Integer id, @RequestBody Cliente cliente) {
 		    clientesRepository
 		                 .findById(id)
 		                 .map(clienteExistente -> {
 		                	 cliente.setId(clienteExistente.getId());
 		                	 clientesRepository.save(cliente);
-		                	 return ResponseEntity.noContent().build();
+		                	 return clienteExistente;
 		                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Cliente não encontrado"));
 
 		                 
