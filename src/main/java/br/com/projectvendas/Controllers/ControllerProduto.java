@@ -50,7 +50,7 @@ public class ControllerProduto {
 		     produtoRepository
 		                    .findById(id)
 		                    .map(excluir -> {
-		                    	produtoRepository.deleteById(id);
+		                    	produtoRepository.delete(excluir);
 		                    	return Type.VOID;
 		                  }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Produto não encontrado para deletar"));
  	}
