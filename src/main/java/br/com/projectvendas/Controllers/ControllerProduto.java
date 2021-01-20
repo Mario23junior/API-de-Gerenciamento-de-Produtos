@@ -32,7 +32,7 @@ public class ControllerProduto {
 		return produtoRepository.save(produto);
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@PathVariable Integer id, @RequestBody Produto produto) {
 		produtoRepository
@@ -45,7 +45,7 @@ public class ControllerProduto {
  	}
 	
 	
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public void deletePro(@PathVariable Integer id) {
 		     produtoRepository
 		                    .findById(id)
@@ -54,5 +54,7 @@ public class ControllerProduto {
 		                    	return Type.VOID;
 		                  }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,"Produto não encontrado para deletar"));
  	}
+	
+	
 	
 }
