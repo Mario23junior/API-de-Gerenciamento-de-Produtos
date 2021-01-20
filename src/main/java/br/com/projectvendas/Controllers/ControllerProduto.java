@@ -37,6 +37,16 @@ public class ControllerProduto {
 		return produtoRepository.save(produto);
 	}
 	
+	
+	@GetMapping("/{id}")
+	public Produto obterPorId(@PathVariable Integer id) {
+		  return produtoRepository
+				           .findById(id)
+				           .orElseThrow(() -> 
+				        	     new ResponseStatusException(HttpStatus.NOT_FOUND,"Produto não encontrado"));
+				           
+	}
+	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@PathVariable Integer id, @RequestBody Produto produto) {
