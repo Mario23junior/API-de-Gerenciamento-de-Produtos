@@ -48,7 +48,7 @@ public class ControllerProduto {
 	}
 	
 	@PutMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.OK)
 	public void update(@PathVariable Integer id, @RequestBody Produto produto) {
 		produtoRepository
 		           .findById(id)
