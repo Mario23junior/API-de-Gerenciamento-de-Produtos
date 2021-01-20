@@ -72,7 +72,6 @@ public class ControllerProduto {
 	
 	
 	@GetMapping
-	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public List<Produto> findProduto(Produto buscaObj) {
 		  ExampleMatcher matcher = ExampleMatcher
 				        .matching()
