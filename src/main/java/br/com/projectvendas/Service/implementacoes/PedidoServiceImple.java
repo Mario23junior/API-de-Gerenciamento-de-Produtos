@@ -1,9 +1,11 @@
 package br.com.projectvendas.Service.implementacoes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.projectvendas.Dto.ItemPedidoDTO;
 import br.com.projectvendas.Dto.PedidoDTO;
 import br.com.projectvendas.Exception.RegrasNegocioException;
 import br.com.projectvendas.Model.Cliente;
@@ -41,9 +43,30 @@ public class PedidoServiceImple implements PedidoService{
 		p.setDataPedido(LocalDate.now() );
 		p.setCliente(clienteInsert);
 		return null;
-		
  	}
-
-
-
+	
+	private void salvarItems(List<ItemPedidoDTO> items) {
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
