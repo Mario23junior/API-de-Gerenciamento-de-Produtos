@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projectvendas.Dto.PedidoDTO;
+import br.com.projectvendas.Model.Pedido;
 import br.com.projectvendas.Service.PedidoService;
 
 @RestController
@@ -23,6 +24,7 @@ public class ControllerPedido {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Integer save(@RequestBody PedidoDTO pedidoDto) {
-		return null;
+		Pedido pedido = service.salvarPedido(pedidoDto);
+		return pedido.getId();
 	}
 }
