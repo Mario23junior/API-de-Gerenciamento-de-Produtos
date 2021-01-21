@@ -30,8 +30,11 @@ public class ControllerProduto {
 		this.produtoRepository = produtosRepository;
  	}
 	
+	public ControllerProduto() {
+		// TODO Auto-generated constructor stub
+	}
 	
-	@PostMapping
+	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Produto savePro(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);

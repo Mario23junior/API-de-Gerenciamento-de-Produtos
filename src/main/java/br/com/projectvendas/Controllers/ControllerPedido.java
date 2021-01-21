@@ -12,7 +12,7 @@ import br.com.projectvendas.Model.Pedido;
 import br.com.projectvendas.Service.PedidoService;
 
 @RestController
-@RequestMapping("/api/produtos")
+@RequestMapping("/api/pedidos")
 public class ControllerPedido {
       
 	private PedidoService service;
@@ -20,6 +20,10 @@ public class ControllerPedido {
 	public ControllerPedido(PedidoService service) {
 		this.service = service;
  	}
+	
+	public ControllerPedido() {
+		// TODO Auto-generated constructor stub
+	}	
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

@@ -38,6 +38,9 @@ public class PedidoServiceImple implements PedidoService{
 		this.produtoRepository = produtoRepository;
 	}
 	
+	public PedidoServiceImple() {
+ 	}
+	
 	@Override
 	@Transactional
 	public Pedido salvarPedido(PedidoDTO pedidoDto) {

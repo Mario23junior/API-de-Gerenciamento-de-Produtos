@@ -9,6 +9,9 @@ public class PedidoDTO {
 	private BigDecimal total;
 	private List<ItemPedidoDTO> items;
 	
+	public PedidoDTO() {
+ 	}
+	
 	public Integer getCliente() {
 		return cliente;
 	}

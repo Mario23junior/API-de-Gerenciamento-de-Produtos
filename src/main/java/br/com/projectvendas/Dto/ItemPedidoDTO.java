@@ -6,8 +6,7 @@ public class ItemPedidoDTO {
 	private Integer quantidade;
 	
 	public ItemPedidoDTO() {
-		// TODO Auto-generated constructor stub
-	}
+ 	}
 	
 	public Integer getProduto() {
 		return produto;
