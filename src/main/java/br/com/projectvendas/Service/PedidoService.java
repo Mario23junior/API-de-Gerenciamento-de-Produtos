@@ -1,5 +1,8 @@
 package br.com.projectvendas.Service;
 
-public interface PedidoService {
+import org.springframework.stereotype.Service;
 
-}
+@Service
+public interface PedidoService {
+	
+ }

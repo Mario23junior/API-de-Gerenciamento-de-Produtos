@@ -14,5 +14,4 @@ public class ControllerPedido {
 	public ControllerPedido(PedidoService service) {
 		this.service = service;
  	}
-	
 }
