@@ -4,9 +4,7 @@ public class ItemPedidoDTO {
    
 	private Integer produto;
 	private Integer quantidade;
-	
-	public ItemPedidoDTO() {
- 	}
+
 	
 	public Integer getProduto() {
 		return produto;

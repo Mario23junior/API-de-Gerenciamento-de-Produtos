@@ -25,8 +25,8 @@ public class ControllerCliente {
     
 	 ClientesRepository clientesRepository;
 	
-	 public ControllerCliente(ClientesRepository clientesRepository ) {
-		  this.clientesRepository = clientesRepository;
+	 public ControllerCliente(ClientesRepository clienteRepository ) {
+		  this.clientesRepository = clienteRepository;
 	}
      
 	@GetMapping("/{id}")

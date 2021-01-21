@@ -7,10 +7,7 @@ public class PedidoDTO {
     
 	private Integer cliente;
 	private BigDecimal total;
-	private List<ItemPedidoDTO> items;
-	
-	public PedidoDTO() {
- 	}
+	private List<ItemPedidoDTO> items; 
 	
 	public Integer getCliente() {
 		return cliente;

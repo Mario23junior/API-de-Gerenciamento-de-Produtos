@@ -29,9 +29,6 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
 	
-	public Cliente() {
-	}
-	
 	public String getCpf() {
 		return cpf;
 	}

@@ -25,28 +25,29 @@ import br.com.projectvendas.Service.PedidoService;
 public class PedidoServiceImple implements PedidoService{
     
 	private PedidosRepository pedidoRepository;
-	private ClientesRepository clienteRepository;
+	private ClientesRepository clientesRepository;
 	private ProdutosRepository produtoRepository;
 	private ItemsRepository itemsPedidoRepository;
  
 	public PedidoServiceImple(PedidosRepository pedidoRepository,
-			                    ClientesRepository clienteRepository, 
+			                    ClientesRepository clientesRepository, 
 			                     ProdutosRepository produtoRepository,
-			                     ItemPedido itemsPedidoRepository) {
+			                     ItemsRepository itemsPedidoRepository) {
 		this.pedidoRepository = pedidoRepository;
-		this.clienteRepository = clienteRepository;
+		this.clientesRepository = clientesRepository;
 		this.produtoRepository = produtoRepository;
+		this.itemsPedidoRepository = itemsPedidoRepository;
+		
 	}
 	
-	public PedidoServiceImple() {
- 	}
+	
 	
 	@Override
 	@Transactional
 	public Pedido salvarPedido(PedidoDTO pedidoDto) {
  			
 		Integer idcliente = pedidoDto.getCliente();
-		Cliente clienteInsert = clienteRepository
+		Cliente clienteInsert = clientesRepository
 				                 .findById(idcliente)
 				                 .orElseThrow(() -> new RegrasNegocioException("Codigo de cliente invalido"));
 		

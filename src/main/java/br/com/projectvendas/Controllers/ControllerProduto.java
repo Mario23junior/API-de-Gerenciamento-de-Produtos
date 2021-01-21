@@ -26,14 +26,11 @@ public class ControllerProduto {
     
 	private ProdutosRepository produtoRepository;
 	
-	public ControllerProduto(ProdutosRepository produtosRepository) {
-		this.produtoRepository = produtosRepository;
+	public ControllerProduto(ProdutosRepository produtoRepository) {
+		this.produtoRepository = produtoRepository;
  	}
 	
-	public ControllerProduto() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Produto savePro(@RequestBody Produto produto) {

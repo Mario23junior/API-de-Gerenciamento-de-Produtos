@@ -21,10 +21,6 @@ public class ControllerPedido {
 		this.service = service;
  	}
 	
-	public ControllerPedido() {
-		// TODO Auto-generated constructor stub
-	}	
-	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Integer save(@RequestBody PedidoDTO pedidoDto) {
