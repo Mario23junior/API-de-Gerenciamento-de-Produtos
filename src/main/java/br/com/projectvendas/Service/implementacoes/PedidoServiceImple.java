@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.projectvendas.Dto.ItemPedidoDTO;
 import br.com.projectvendas.Dto.PedidoDTO;
+import br.com.projectvendas.Enums.StatusPedido;
 import br.com.projectvendas.Exception.RegrasNegocioException;
 import br.com.projectvendas.Model.Cliente;
 import br.com.projectvendas.Model.ItemPedido;
@@ -56,6 +57,7 @@ public class PedidoServiceImple implements PedidoService{
 		pedido.setTotal(pedidoDto.getTotal() );
 		pedido.setDataPedido(LocalDate.now() );
 		pedido.setCliente(clienteInsert);
+		pedido.setStatus(StatusPedido.REALIZADO);
 		
 		List<ItemPedido> itemPedidos = converterItems(pedido, pedidoDto.getItems());
 		pedidoRepository.save(pedido);

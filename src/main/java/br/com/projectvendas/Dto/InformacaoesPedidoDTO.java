@@ -14,6 +14,7 @@ public class InformacaoesPedidoDTO {
 	private String nome;
 	private BigDecimal total;
 	private String dataPedido;
+	private String status;
 	
 	private List<InformacoesItemPedidoDTO> items;
 	
@@ -59,6 +60,13 @@ public class InformacaoesPedidoDTO {
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 	
 	

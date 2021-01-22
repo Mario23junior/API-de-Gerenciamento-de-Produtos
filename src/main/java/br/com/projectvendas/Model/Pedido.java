@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import br.com.projectvendas.Enums.StatusPedido;
 
 @Entity
 @Table(name = "Pedido")
@@ -31,6 +35,10 @@ public class Pedido {
 	
 	@Column(name = "total", precision = 20, scale = 2)
 	private BigDecimal total;
+	
+	@Column(name = "status")
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 	
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens;
@@ -78,6 +86,16 @@ public class Pedido {
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
+	
+	
 	
 	
 	
