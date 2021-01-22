@@ -7,5 +7,6 @@ import br.com.projectvendas.Model.Produto;
 
 @Repository
 public interface ProdutosRepository extends JpaRepository<Produto, Integer> {
-
+   
+	
 }

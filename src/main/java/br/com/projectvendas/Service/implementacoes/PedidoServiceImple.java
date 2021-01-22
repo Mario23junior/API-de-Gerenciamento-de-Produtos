@@ -2,6 +2,7 @@ package br.com.projectvendas.Service.implementacoes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -86,25 +87,12 @@ public class PedidoServiceImple implements PedidoService{
 					   return itemPedido;
 				  }).collect(Collectors.toList());
 	}
+	
+	
+	
+	@Override
+	public Optional<Pedido> ObterDetalhesPedido(Integer id) {
+ 		return pedidoRepository.findPedidoById(id);
+	}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
