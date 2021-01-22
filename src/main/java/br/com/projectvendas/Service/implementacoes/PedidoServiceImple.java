@@ -76,7 +76,7 @@ public class PedidoServiceImple implements PedidoService{
 					  Integer idProduto = dto.getProduto();
 				      Produto produto = produtoRepository
 							              .findById(idProduto)
-							              .orElseThrow( () -> new RegrasNegocioException("Codigo cliente invalido"));
+							              .orElseThrow( () -> new RegrasNegocioException("Codigo do produto invalido"));
 					  
 					  ItemPedido itemPedido = new ItemPedido();
 					  itemPedido.setQuantidade(dto.getQuantidade());
