@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import br.com.projectvendas.Dto.ItemPedidoDTO;
 import br.com.projectvendas.Dto.PedidoDTO;
 import br.com.projectvendas.Enums.StatusPedido;
+import br.com.projectvendas.Exception.PedidoNaoEncontradoException;
 import br.com.projectvendas.Exception.RegrasNegocioException;
 import br.com.projectvendas.Model.Cliente;
 import br.com.projectvendas.Model.ItemPedido;
@@ -95,6 +96,18 @@ public class PedidoServiceImple implements PedidoService{
 	@Override
 	public Optional<Pedido> ObterDetalhesPedido(Integer id) {
  		return pedidoRepository.findPedidoById(id);
-	}	
+	}
+	
+	@Override
+	@Transactional
+	public void AtualizarStatus(Integer id, StatusPedido statusPedido) {
+ 	       
+		  pedidoRepository 
+		                 .findById(id)
+		                 .map(pedido -> {
+		                	 pedido.setStatus(statusPedido);
+		                	 return pedidoRepository.save(pedido);
+		                 }).orElseThrow(() -> new PedidoNaoEncontradoException());
+	}
 }
 
