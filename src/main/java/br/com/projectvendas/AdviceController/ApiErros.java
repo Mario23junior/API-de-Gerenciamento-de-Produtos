@@ -10,7 +10,11 @@ public class ApiErros {
 	public ApiErros(String menssage) {
 		 this.erros = Arrays.asList(menssage);
 	}
-
+	
+	public ApiErros(List<String> erros) {
+		this.erros = erros;
+ 	}
+	
 	public List<String> getErros() {
 		return erros;
 	}
