@@ -3,11 +3,18 @@ package br.com.projectvendas.Dto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class PedidoDTO {
     
+	@NotNull(message = "Informe o codigo do cliente")
 	private Integer cliente;
+	
+	@NotNull(message = "Campo total e obrigatorio")
 	private BigDecimal total;
+	
 	private List<ItemPedidoDTO> items; 
+	
 	
 	public Integer getCliente() {
 		return cliente;
