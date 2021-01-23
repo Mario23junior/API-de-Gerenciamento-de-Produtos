@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
  
 @Entity
 @Table(name = "Cliente")
@@ -25,8 +29,11 @@ public class Cliente {
 	@Column(length = 100)
 	private String nome;
 	
-	@Column(name = "cpf", length = 100)
+	@CPF(message = "Informe um CPF valido")
+	@NotEmpty(message = "Campo CPF e obrigatorio")
+	@Column(name = "cpf", length = 11)
 	private String cpf; 
+	
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
@@ -54,7 +61,8 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+    
+	@JsonIgnore
 	public Set<Pedido> getPedidos() {
 		return pedidos;
 	}
