@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Produto")
@@ -18,9 +20,12 @@ public class Produto {
 	private Integer id;
 	
 	@Column(length = 100)
+	@NotEmpty(message = "Descricao e obrigatorio")
 	private String descricao;
 	
+	
 	@Column(name = "preco_unitario")
+	@NotNull(message = "Definir o preço e obrigatorio")
 	private BigDecimal preco;
 	
 	public Produto() {
