@@ -25,15 +25,14 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@NotEmpty(message = "Campo nome e obrigatorio")
 	@Column(length = 100)
+	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
-	@CPF(message = "Informe um CPF valido")
-	@NotEmpty(message = "Campo CPF e obrigatorio")
+	@CPF(message = "{campo.cpf.invalido}")
+	@NotEmpty(message = "{campo.cpf.obrigatorio}")
 	@Column(name = "cpf", length = 11)
 	private String cpf; 
-	
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
